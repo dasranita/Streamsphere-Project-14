@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {entitled} from './rules.js';
+test('expired subscriber denied',()=>assert.equal(entitled({published:true,premium:true},{expires:'2000-01-01'}),false));test('free published content',()=>assert.equal(entitled({published:true,premium:false},{}),true));test('unpublished denied',()=>assert.equal(entitled({published:false,premium:false},{}),false));test('active subscriber',()=>assert.equal(entitled({published:true,premium:true},{expires:'2099-01-01'}),true));
